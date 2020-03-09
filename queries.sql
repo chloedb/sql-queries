@@ -36,27 +36,37 @@ SELECT * FROM albums WHERE title LIKE 'A%' ORDER BY title;
 -- Remember: run "\d+ invoices" to see the structure of the "invoices" table
 
 -- Every invoice
+SELECT * FROM invoices;
 
 -- Every invoice ordered by total invoice amount ("total")
+SELECT * FROM invoices ORDER BY total;
 
 -- Every invoice with a total greater than 10
+SELECT * FROM invoices WHERE total>10;
 
 -- The 10 least expensive invoices
 -- Remember: ORDER BY orders from lowest-to-highest by default
 SELECT * FROM invoices ORDER BY total LIMIT 10;
 
 -- The 10 most expensive invoices
+SELECT * FROM invoices ORDER BY total DESC LIMIT 10;
 
 -- The 15 most recent invoices
+SELECT * FROM invoices ORDER BY invoice_date LIMIT 15;
 
 -- The 15 oldest invoices
+SELECT * FROM invoices ORDER BY invoice_date DESC LIMIT 15;
 
 -- The 10 most expensive invoices from the US
+SELECT * FROM invoices WHERE billing_country='USA' ORDER BY total DESC LIMIT 10;
 
 -- The 10 least expensive invoices from the US
+SELECT * FROM invoices WHERE billing_country='USA' ORDER BY total LIMIT 10;
+
 
 -- The 10 most expensive invoices from outside the US
 -- Hint: If "=" means equal, use "!=" to mean "not equal"
+SELECT * FROM invoices WHERE billing_country!='USA' ORDER BY total DESC LIMIT 10;
 
 -- Every invoice from Chicago, IL
 SELECT * FROM invoices WHERE billing_city = 'Chicago' AND billing_state = 'IL' AND billing_country='USA';
